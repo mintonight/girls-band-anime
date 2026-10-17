@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fdf8f2">
+<title>把孤独变成声音 · 孤独摇滚 / MyGO!!!!! / GIRLS BAND CRY</title>
+<meta name="description" content="三部重新定义「少女乐队」的动画：孤独摇滚、BanG Dream! It's MyGO!!!!!、GIRLS BAND CRY。由 H5 + CSS3 + JS + SVG 手工绘制的动效长页。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 开场 -->
+<div class="curtain" id="curtain" role="button" tabindex="0" aria-label="点击进入">
+  <div class="curtain__stack">
+    <p class="curtain__kicker">BOCCHI · MYGO · GIRLS BAND CRY</p>
+    <h2 class="curtain__title">把孤独<br><em>变成声音</em></h2>
+    <div class="curtain__cast" aria-hidden="true">
+      <img src="img/b-ep08.jpg" alt=""><img src="img/m-ep10b.jpg" alt=""><img src="img/g-s11c.jpg" alt="">
+    </div>
+    <div class="curtain__text">click / scroll to tune in</div>
+  </div>
+  <div class="curtain__bar"></div>
+</div>
+
+<div class="progress"><i id="bar"></i></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<nav class="dots" id="dots" aria-label="页面导航"></nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__art"></div>
+    <div class="hero__grad"></div>
+    <div class="hero__grid"></div>
+    <div class="orbit orbit--1"></div>
+    <div class="orbit orbit--2"></div>
+  </div>
+
+  <div class="hero__inner">
+    <p class="hero__kicker">2022 — 2024 · 少女乐队动画三部曲</p>
+
+    <h1 class="hero__title">
+      <span class="line"><span><span class="grad">把孤独</span></span></span>
+      <span class="line"><span>变成声音</span></span>
+    </h1>
+    <p class="hero__en"><span>BOCCHI</span><i>·</i><span>MYGO</span><i>·</i><span>GIRLS BAND CRY</span></p>
+
+    <p class="hero__sub">
+      三部把「少女乐队」重新定义的动画 —— 一个躲在壁橱里练琴的社恐、一支在解散边缘反复拉扯的乐队、
+      五个在东京不肯认输的女孩。它们都不太像偶像番，更像是把青春期最难受的那一块，直接做成了失真吉他。
+    </p>
+
+    <div class="hero__cta">
+      <a class="btn" href="#bocchi"><span>开始巡礼 ↓</span></a>
+      <a class="btn btn--ghost" href="#compare"><span>直接看对照</span></a>
+    </div>
+
+    <div class="hero__cast" aria-hidden="true">
+      <figure class="cast cast--b" style="--cc:#f7b733"><img src="img/b-ep04.jpg" alt=""></figure>
+      <figure class="cast cast--m" style="--cc:#8b7cf6"><img src="img/m-s12.jpg" alt=""></figure>
+      <figure class="cast cast--g" style="--cc:#28b0d6"><img src="img/g-s12.jpg" alt=""></figure>
+    </div>
+
+    <div class="hero__chips">
+      <a class="chip" href="#bocchi" style="--dot:#ffd23f"><i></i>ぼっち・ざ・ろっく！</a>
+      <a class="chip" href="#mygo" style="--dot:#9b8cff"><i></i>BanG Dream! It's MyGO!!!!!</a>
+      <a class="chip" href="#gbc" style="--dot:#4cc9f0"><i></i>ガールズバンドクライ</a>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span><b>結束バンド</b><em>✦</em> 青春コンプレックス <em>✦</em> ギターと孤独と蒼い惑星 <em>✦</em> <b>MYGO!!!!!</b><em>✦</em> 詩超絆 <em>✦</em> 春日影 <em>✦</em> <b>トゲナシトゲアリ</b><em>✦</em> 名もなき何もかも <em>✦</em> 空の箱 <em>✦</em></span>
+      <span><b>結束バンド</b><em>✦</em> 青春コンプレックス <em>✦</em> ギターと孤独と蒼い惑星 <em>✦</em> <b>MYGO!!!!!</b><em>✦</em> 詩超絆 <em>✦</em> 春日影 <em>✦</em> <b>トゲナシトゲアリ</b><em>✦</em> 名もなき何もかも <em>✦</em> 空の箱 <em>✦</em></span>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true"><span>scroll</span><i></i></div>
+</header>
+
+<main>
+<!-- ================= 序章 ================= -->
+<section class="scene" id="prologue">
+  <div class="scene__inner">
+    <p class="seq" data-reveal="mask">00 / PROLOGUE　序章</p>
+    <h2 class="intro__lead" data-reveal>
+      过去十年，「少女乐队」几乎等于<em>「努力就一定会发光」</em>。<br>
+      <span class="dim">2022 年之后，这个公式被拆了三次。</span>
+    </h2>
+
+    <div class="intro__cols">
+      <p data-reveal style="--d:.05s"><b>三个主角都不太会说话。</b>
+        后藤一里在壁橱里弹了三年吉他，只为「出名之后可以不用和人打交道」；高松灯把想说的话写进笔记本，递出去都费劲；
+        井芹仁菜在愤怒里找不到出口。她们的共同点是——只有乐器响起来的时候，话才说得完整。</p>
+      <p data-reveal style="--d:.15s"><b>乐队不是解药，是不得不待在一起的地方。</b>
+        三部作品都花了大量篇幅写「磨合」：谁不想练、谁不敢上台、谁在利用谁、谁又擅自离开。
+        音乐并不万能，但没有音乐就更没法开口——这才是它们真正的共同母题。</p>
+      <p data-reveal style="--d:.25s"><b>演奏是真的。</b>
+        《孤独摇滚》请乐手做演奏参考与动作捕捉，还做了真人化的舞台演出；MyGO!!!!! 用 3DCG 拍完整场 live 长镜头；
+        GBC 干脆让声优本人练到能上舞台。那种「真的在弹」的质感，是这一批作品最动人的部分。</p>
+    </div>
+
+    <div class="gates">
+      <a class="gate" href="#bocchi" data-reveal style="--g1:#ffd23f;--g2:#ff7e9a;--d:.05s">
+        <div class="gate__no">01 / SOLO</div>
+        <h3>孤独摇滚！</h3>
+        <p>社恐少女 × 下北泽 Live House<br>把内心戏拍成视觉奇观</p>
+        <div class="gate__arrow">→</div>
+      </a>
+      <a class="gate" href="#mygo" data-reveal style="--g1:#9b8cff;--g2:#ff5fa2;--d:.13s">
+        <div class="gate__no">02 / BAND</div>
+        <h3>BanG Dream! It's MyGO!!!!!</h3>
+        <p>五个方向 × 一场修罗场<br>第 10 话的 live 至今仍是名场面</p>
+        <div class="gate__arrow">→</div>
+      </a>
+      <a class="gate" href="#gbc" data-reveal style="--g1:#4cc9f0;--g2:#ff7a59;--d:.21s">
+        <div class="gate__no">03 / SCREAM</div>
+        <h3>GIRLS BAND CRY</h3>
+        <p>退学少女 × 川崎的夜晚<br>最「脏」也最「烫」的一部</p>
+        <div class="gate__arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 孤独摇滚 ================= -->
+<section class="scene band" id="bocchi" data-band="bocchi" data-nav="孤独摇滚" style="--c1:#f7b733;--c2:#ff5f95;--cc:#f7b733">
+  <div class="band__glow" aria-hidden="true"></div>
+  <figure class="band__scene" data-scene="img/b-ep04b.jpg" aria-hidden="true"><figcaption>第 4 话 · 喜多郁代</figcaption></figure>
+  <div class="lyrics" id="lyrics-bocchi" aria-hidden="true"></div>
+
+  <div class="scene__inner">
+    <div class="band__head">
+      <div>
+        <div class="band__no" data-reveal="mask">01 / SOLO　結束バンド</div>
+        <h2 class="band__title" data-reveal>
+          Bocchi<br><span class="stroke">The Rock!</span>
+          <small>ぼっち・ざ・ろっく！（孤独摇滚！）</small>
+        </h2>
+      </div>
+      <dl class="band__meta" data-reveal="right">
+        <div><dt>放送</dt><dd class="y">2022 年 10 月 — 12 月</dd></div>
+        <div><dt>话数</dt><dd>全 12 话（+ 剧场总集篇）</dd></div>
+        <div><dt>动画制作</dt><dd>CloverWorks</dd></div>
+        <div><dt>原作</dt><dd>はまじあき（芳文社 Manga Time Kirara Max）</dd></div>
+        <div><dt>关键词</dt><dd>社恐 · 下北泽 · 成长</dd></div>
+      </dl>
+    </div>
+
+    <p class="band__lead" data-reveal>
+      后藤一里，通称「ぼっち」。一个连点餐都要在心里演练三遍的高中生。为了「靠乐队出名，从此不用和人说话」，
+      她把自己关进壁橱，每天练琴六小时，练成了网络上传说的「吉他英雄」——然后在公园里被伊地知虹夏一把捡走，
+      塞进了下北泽的 Live House <span class="hl">STARRY</span>。
+      <br><br>
+      这部动画最厉害的地方，是把社恐的<b>内心小剧场</b>做成了视觉奇观：黏土定格、恐怖片、8-bit 游戏、少女漫滤镜，
+      一集能换七八种画风。而到了第 4 话，当一里闭着眼睛把《ギターと孤独と蒼い惑星》弹完，
+      所有积攒的笑点会在一瞬间还给你——那不是天才的炫技，是一个人终于被听见。
+    </p>
+
+    <div class="quote" data-reveal>
+      <div class="quote__mark">“</div>
+      <p>在壁橱里弹了三年吉他，我以为自己准备好了一切；<br>结果连一句「请多关照」都说不出口。</p>
+      <cite>— 后藤一里 · 内心独白（意译）</cite>
+    </div>
+
+    <div class="stage" data-reveal="zoom">
+      <div class="stage__cap"><i></i><span>STARRY · 下北泽 · live simulation</span></div>
+      <div id="stage-bocchi"></div>
+    </div>
+
+    <div class="members">
+      <div class="members__head">
+        <h3>結束バンド · Members</h3>
+        <span>hover / tap 翻开背面</span>
+      </div>
+      <div class="mgrid" id="members-bocchi"></div>
+    </div>
+
+    <div class="songs">
+      <div class="members__head"><h3>代表曲 · Discography</h3><span class="songs__hint">点击播放</span></div>
+      <div class="songlist" id="songs-bocchi"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 MyGO ================= -->
+<section class="scene band" id="mygo" data-band="mygo" data-nav="MyGO!!!!!" style="--c1:#8b7cf6;--c2:#ff5f95;--cc:#8b7cf6">
+  <div class="band__glow" aria-hidden="true"></div>
+  <figure class="band__scene" data-scene="img/m-ep10b.jpg" aria-hidden="true"><figcaption>第 10 话 · 高松灯</figcaption></figure>
+  <div class="lyrics" id="lyrics-mygo" aria-hidden="true"></div>
+
+  <div class="scene__inner">
+    <div class="band__head">
+      <div>
+        <div class="band__no" data-reveal="mask">02 / BAND　MYGO!!!!!</div>
+        <h2 class="band__title" data-reveal>
+          It's<br><span class="stroke">MyGO!!!!!</span>
+          <small>BanG Dream! It's MyGO!!!!!（迷途之子）</small>
+        </h2>
+      </div>
+      <dl class="band__meta" data-reveal="right">
+        <div><dt>放送</dt><dd class="y">2023 年 6 月 — 9 月</dd></div>
+        <div><dt>话数</dt><dd>全 13 话</dd></div>
+        <div><dt>动画制作</dt><dd>サンジゲン（三次元）</dd></div>
+        <div><dt>企划</dt><dd>BanG Dream! Project</dd></div>
+        <div><dt>关键词</dt><dd>解散 · 伪装 · 不甘心</dd></div>
+      </dl>
+    </div>
+
+    <p class="band__lead" data-reveal>
+      五个人，五个方向。高松灯只写得出歌词，说不出别的话；千早爱音想在新学校「重新做人」；
+      要楽奈只关心一件事——<b>有趣不有趣</b>；长崎そよ还在等一支永远不会回来的乐队；椎名立希只想证明自己。
+      <br><br>
+      《It's MyGO!!!!!》把乐队番拍成了群像剧里的修罗场：误会、利用、逃避、翻脸，每一步都合情合理，每一步都伤人。
+      而它最著名的一集——第 10 话——用一场没有任何预告的 live，让所有憋着的话在《詩超絆》里同时炸开。
+      那不是和解，是「先把它唱出来再说」。<span class="hl">这是三部里最疼的一部。</span>
+    </p>
+
+    <div class="quote" data-reveal>
+      <div class="quote__mark">“</div>
+      <p>就算没人懂，我也要把这五个人，唱在一起。</p>
+      <cite>— 高松灯 · 第 10 话“詩超絆”（意译）</cite>
+    </div>
+
+    <div class="stage" data-reveal="zoom">
+      <div class="stage__cap"><i></i><span>live house · 五个人的舞台</span></div>
+      <div id="stage-mygo"></div>
+    </div>
+
+    <div class="members">
+      <div class="members__head">
+        <h3>MYGO!!!!! · Members</h3>
+        <span>hover / tap 翻开背面</span>
+      </div>
+      <div class="mgrid" id="members-mygo"></div>
+    </div>
+
+    <div class="songs">
+      <div class="members__head"><h3>代表曲 · Discography</h3><span class="songs__hint">点击播放</span></div>
+      <div class="songlist" id="songs-mygo"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 GBC ================= -->
+<section class="scene band" id="gbc" data-band="gbc" data-nav="GIRLS BAND CRY" style="--c1:#28b0d6;--c2:#ff7a59;--cc:#28b0d6">
+  <div class="band__glow" aria-hidden="true"></div>
+  <figure class="band__scene" data-scene="img/g-ep13b.jpg" aria-hidden="true"><figcaption>第 13 话 · 五个人</figcaption></figure>
+  <div class="lyrics" id="lyrics-gbc" aria-hidden="true"></div>
+
+  <div class="scene__inner">
+    <div class="band__head">
+      <div>
+        <div class="band__no" data-reveal="mask">03 / SCREAM　トゲナシトゲアリ</div>
+        <h2 class="band__title" data-reveal>
+          Girls<br><span class="stroke">Band Cry</span>
+          <small>ガールズバンドクライ（少女乐队呐喊）</small>
+        </h2>
+      </div>
+      <dl class="band__meta" data-reveal="right">
+        <div><dt>放送</dt><dd class="y">2024 年 4 月 — 6 月</dd></div>
+        <div><dt>话数</dt><dd>全 13 话</dd></div>
+        <div><dt>动画制作</dt><dd>東映アニメーション</dd></div>
+        <div><dt>系列构成</dt><dd>花田十輝</dd></div>
+        <div><dt>关键词</dt><dd>退学 · 上京 · 不肯认输</dd></div>
+      </dl>
+    </div>
+
+    <p class="band__lead" data-reveal>
+      井芹仁菜，高中退学，一个人跑到东京。她没有梦想，只有一肚子没处发的火。
+      在川崎的 Live House 里，她听见河原木桃香的吉他，然后决定：<b>我要站在那儿。</b>
+      <br><br>
+      《GBC》是三部里最「脏」也最「烫」的一部。全 3DCG 却做出了手绘的呼吸感，川崎的居酒屋、便利店、房租、打工——
+      它把「靠音乐活下去」写得一点也不浪漫。仁菜从头到尾都在生气，而这份怒气，恰好就是它最好听的地方。
+    </p>
+
+    <div class="quote" data-reveal>
+      <div class="quote__mark">“</div>
+      <p>我不想输给那个，连自己都讨厌的自己。</p>
+      <cite>— 井芹仁菜 · 剧中心境（意译）</cite>
+    </div>
+
+    <div class="stage" data-reveal="zoom">
+      <div class="stage__cap"><i></i><span>KAWASAKI · live house · 3DCG stage</span></div>
+      <div id="stage-gbc"></div>
+    </div>
+
+    <div class="members">
+      <div class="members__head">
+        <h3>トゲナシトゲアリ · Members</h3>
+        <span>hover / tap 翻开背面</span>
+      </div>
+      <div class="mgrid" id="members-gbc"></div>
+    </div>
+
+    <div class="songs">
+      <div class="members__head"><h3>代表曲 · Discography</h3><span class="songs__hint">点击播放</span></div>
+      <div class="songlist" id="songs-gbc"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 羁绊网络 ================= -->
+<section class="scene" id="bond">
+  <div class="scene__inner">
+    <p class="seq" data-reveal="mask">04 / RELATIONS　羁绊网络</p>
+    <h2 class="intro__lead" data-reveal style="font-size:clamp(24px,3.6vw,46px)">
+      十四个人，<em>三种把彼此绑在一起的方式</em>
+    </h2>
+    <p class="intro__cols" style="margin-top:22px;display:block;max-width:70ch;color:#a9b2c9" data-reveal>
+      把鼠标停在任意一个人身上，就能看见他/她与谁连线、为什么连在一起。线越亮，关系越要紧。
+    </p>
+
+    <div class="net" data-reveal="zoom">
+      <div class="net__hint">HOVER A NODE</div>
+      <svg id="bondSvg" viewBox="0 0 1000 660" role="img" aria-label="三部作品人物关系网络图"></svg>
+      <div class="net__legend">
+        <span><i style="background:#ffd23f"></i>結束バンド</span>
+        <span><i style="background:#9b8cff"></i>MYGO!!!!!</span>
+        <span><i style="background:#4cc9f0"></i>トゲナシトゲアリ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 对照 ================= -->
+<section class="scene" id="compare">
+  <div class="scene__inner">
+    <p class="seq" data-reveal="mask">05 / COMPARE　对照</p>
+    <h2 class="intro__lead" data-reveal style="font-size:clamp(24px,3.6vw,46px)">
+      同样是少女乐队，<em>切入的角度完全不同</em>
+    </h2>
+
+    <div class="cmp">
+      <div class="cmp__col" data-reveal style="--cc:#ffd23f">
+        <div class="tag">01 · SOLO</div>
+        <h3>孤独摇滚！</h3>
+        <ul>
+          <li><span>孤独的形状</span>把自己关起来的孤独，能被看见、也很可爱</li>
+          <li><span>乐队如何成立</span>被前辈「捡」进去，被动地进入人群</li>
+          <li><span>核心冲突</span>我想被听见，但我连自我介绍都做不到</li>
+          <li><span>音乐风格</span>轻快、明亮、青春感很强的吉他摇滚</li>
+          <li><span>看完你会</span>想立刻学会一首歌，然后对着空气弹</li>
+        </ul>
+      </div>
+      <div class="cmp__col" data-reveal style="--cc:#9b8cff;--d:.1s">
+        <div class="tag">02 · BAND</div>
+        <h3>It's MyGO!!!!!</h3>
+        <ul>
+          <li><span>孤独的形状</span>人明明在一起，却各自想着完全不同的东西</li>
+          <li><span>乐队如何成立</span>从一支解散的乐队废墟上，重新拼起来</li>
+          <li><span>核心冲突</span>我们到底算不算「一起」，还是只是互相利用</li>
+          <li><span>音乐风格</span>高速、凌厉、情绪浓度极高的乐队摇滚</li>
+          <li><span>看完你会</span>想去重看第 10 话，并且不敢跟人吵架</li>
+        </ul>
+      </div>
+      <div class="cmp__col" data-reveal style="--cc:#4cc9f0;--d:.2s">
+        <div class="tag">03 · SCREAM</div>
+        <h3>GIRLS BAND CRY</h3>
+        <ul>
+          <li><span>孤独的形状</span>被世界判定为「不合群」，于是干脆不认输</li>
+          <li><span>乐队如何成立</span>为了某个人、为了不低头，硬凑出来的</li>
+          <li><span>核心冲突</span>要活得像自己，还是活得「像个大人」</li>
+          <li><span>音乐风格</span>嘶吼感十足、带朋克骨气的乐队摇滚</li>
+          <li><span>看完你会</span>想骂一句脏话，然后去把琴练完</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cmp__radar">
+      <div class="radar-wrap" data-reveal="zoom">
+        <svg id="radar" viewBox="0 0 420 420" role="img" aria-label="三部作品主观特质雷达图"></svg>
+        <div class="radar__legend">
+          <span><i style="background:#f7b733"></i>孤独摇滚！</span>
+          <span><i style="background:#8b7cf6"></i>It's MyGO!!!!!</span>
+          <span><i style="background:#28b0d6"></i>GIRLS BAND CRY</span>
+        </div>
+      </div>
+      <div class="radar__keys">
+        <div data-reveal><i style="background:#ffd23f"></i><span><b>笑点密度</b>：孤独摇滚的喜剧浓度是断崖式的，它敢把社恐拍成恐怖片。</span></div>
+        <div data-reveal><i style="background:#9b8cff"></i><span><b>情感浓度</b>：MyGO!!!!! 把「被抛下」的恐惧拍得比恐怖片还真。</span></div>
+        <div data-reveal><i style="background:#4cc9f0"></i><span><b>现实质感</b>：GBC 连房租、打工、退学手续都写进去了。</span></div>
+        <div data-reveal><i style="background:#3a4159"></i><span>数值为主观对照，仅供感受差异，不是评分。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 场景画廊 ================= -->
+<section class="scene" id="gallery" data-nav="场景">
+  <div class="scene__inner">
+    <p class="seq" data-reveal="mask">06 / ATMOSPHERE　场景</p>
+    <h2 class="intro__lead" data-reveal style="font-size:clamp(24px,3.6vw,46px)">
+      这些画面，<em>就是作品本身</em>
+    </h2>
+    <div class="gallery">
+      <figure class="gl gl--wide" data-reveal="zoom" style="--cc:#f7b733">
+        <img src="img/b-ep04b.jpg" alt="孤独摇滚！第 4 话：喜多郁代抱着蓝色吉他看向一里" loading="lazy">
+        <figcaption><b>「第一次被听见」</b><span>孤独摇滚！ · 第 4 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#f7b733">
+        <img src="img/b-ep08.jpg" alt="孤独摇滚！第 8 话：喜多郁代在舞台上唱歌" loading="lazy">
+        <figcaption><b>舞台上的喜多</b><span>孤独摇滚！ · 第 8 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#f7b733">
+        <img src="img/b-ep04.jpg" alt="孤独摇滚！第 4 话：一里在车站用手比出取景框" loading="lazy">
+        <figcaption><b>取景框里的自己</b><span>孤独摇滚！ · 第 4 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#f7b733">
+        <img src="img/b-ep08b.jpg" alt="孤独摇滚！第 8 话：三人在看笔记本" loading="lazy">
+        <figcaption><b>三个人的笔记本</b><span>孤独摇滚！ · 第 8 话</span></figcaption>
+      </figure>
+
+      <figure class="gl gl--wide" data-reveal="zoom" style="--cc:#8b7cf6">
+        <img src="img/m-s12.jpg" alt="It's MyGO!!!!! 第 12 话：长崎そよ在舞台上弹贝斯唱歌" loading="lazy">
+        <figcaption><b>唱出来才算数</b><span>It's MyGO!!!!! · 第 12 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#8b7cf6">
+        <img src="img/m-ep10c.jpg" alt="It's MyGO!!!!! 第 10 话：高松灯与要楽奈在夜晚的坡道" loading="lazy">
+        <figcaption><b>夜晚的坡道</b><span>It's MyGO!!!!! · 第 10 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#8b7cf6">
+        <img src="img/m-s09.jpg" alt="It's MyGO!!!!! 第 9 话：黄昏房间里的两人" loading="lazy">
+        <figcaption><b>黄昏的房间</b><span>It's MyGO!!!!! · 第 9 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#8b7cf6">
+        <img src="img/m-s13.jpg" alt="It's MyGO!!!!! 第 13 话：五个人在店里围坐" loading="lazy">
+        <figcaption><b>五个人坐在一起</b><span>It's MyGO!!!!! · 第 13 话</span></figcaption>
+      </figure>
+
+      <figure class="gl gl--wide" data-reveal="zoom" style="--cc:#28b0d6">
+        <img src="img/g-s11.jpg" alt="GIRLS BAND CRY 第 11 话：五个人挤在一起合影" loading="lazy">
+        <figcaption><b>五个人凑齐了</b><span>GIRLS BAND CRY · 第 11 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#28b0d6">
+        <img src="img/g-ep12d.jpg" alt="GIRLS BAND CRY 第 12 话：井芹仁菜与河原木桃香" loading="lazy">
+        <figcaption><b>不肯低头的两个人</b><span>GIRLS BAND CRY · 第 12 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#28b0d6">
+        <img src="img/g-ep11d.jpg" alt="GIRLS BAND CRY 第 11 话：两人躺在天台上" loading="lazy">
+        <figcaption><b>天台上的午睡</b><span>GIRLS BAND CRY · 第 11 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#28b0d6">
+        <img src="img/g-ep12c.jpg" alt="GIRLS BAND CRY 第 12 话：车厢里的两人" loading="lazy">
+        <figcaption><b>车厢里的两个人</b><span>GIRLS BAND CRY · 第 12 话</span></figcaption>
+      </figure>
+      <figure class="gl" data-reveal="zoom" style="--cc:#28b0d6">
+        <img src="img/g-ep13c.jpg" alt="GIRLS BAND CRY 第 13 话：夜晚的两人" loading="lazy">
+        <figcaption><b>夜里的对话</b><span>GIRLS BAND CRY · 第 13 话</span></figcaption>
+      </figure>
+      <figure class="gl gl--wide" data-reveal="zoom" style="--cc:#8b7cf6">
+        <img src="img/m-kv0.jpg" alt="It's MyGO!!!!! 官方主视觉：五个人在街角" loading="lazy">
+        <figcaption><b>官方主视觉</b><span>It's MyGO!!!!! · 街角五人</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="members__head" style="margin-top:clamp(36px,6vh,60px)">
+      <h3>官方 PV / 特报 · Trailer Stills</h3>
+      <span>YouTube 官方频道缩略图</span>
+    </div>
+    <div class="pvrow">
+      <figure class="pv" data-reveal="zoom"><img src="img/b-yt5.jpg" alt="孤独摇滚！第 1 弹 PV" loading="lazy"><figcaption>第 1 弹 PV</figcaption></figure>
+      <figure class="pv" data-reveal="zoom"><img src="img/b-yt4.jpg" alt="孤独摇滚！第 2 弹 PV" loading="lazy"><figcaption>第 2 弹 PV</figcaption></figure>
+      <figure class="pv" data-reveal="zoom"><img src="img/b-yt3.jpg" alt="孤独摇滚！本 PV：四人在路口" loading="lazy"><figcaption>本 PV · 四人在路口</figcaption></figure>
+      <figure class="pv" data-reveal="zoom"><img src="img/b-yt6.jpg" alt="孤独摇滚！2022 播出告知" loading="lazy"><figcaption>2022 播出告知</figcaption></figure>
+      <figure class="pv" data-reveal="zoom"><img src="img/b-sp2.jpg" alt="结束乐队真人 Live 恒星 宣传图" loading="lazy"><figcaption>結束バンド LIVE「恒星」</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 尾声 ================= -->
+<section class="scene epilogue" id="end">
+  <div class="scene__inner">
+    <h2 data-reveal>她们都在唱同一件事——<br><em>「我在这里」</em></h2>
+    <p data-reveal>
+      这三部作品没有一个是「努力就会成功」的故事。一里依然不擅长说话，MyGO!!!!! 的五个人还是会在练习室吵架，
+      仁菜也未必真的赢过谁。但她们都在同一个地方找到了同一件事：
+      一个可以把「说不出口」变成声音的位置。
+    </p>
+    <p data-reveal style="margin-top:18px;color:#6f7893;font-size:12.5px">
+      And that's why we still listen.
+    </p>
+    <div class="sig" data-reveal>結束バンド　/　MYGO!!!!!　/　トゲナシトゲアリ</div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div>
+    <b>把孤独变成声音</b>
+    <p>本页为纯前端演示：HTML5 + CSS3（关键帧 / 3D 翻转 / 混合模式 / 渐变遮罩）+ 原生 JS（IntersectionObserver / SVG 动态绘制 / Canvas 频谱）+ 内联 SVG 插画。<br>
+    无外部依赖。「代表曲」列表接入本地音乐库（<b>E:\Music\music</b>，共 45 首），点击即可真实播放；音频用 file:// 直接读取，不经过任何服务器。角色立绘取自各作品官方网站公开角色页（bocchi.rocks / anime.bang-dream.com/mygo / girls-band-cry.com），版权归原作者与制作委员会所有，本页仅作非商业介绍与学习演示，详见 <b>img/CREDITS.md</b>。舞台、频谱、动效与排版均为原创代码绘制。</p>
+  </div>
+  <div class="foot__tags">
+    <span>H5</span><span>CSS3</span><span>JS</span><span>SVG</span><span>Canvas</span>
+  </div>
+</footer>
+
+<!-- 播放器（接入本地音频） -->
+<div class="player" id="player" role="status" aria-live="polite">
+  <div class="player__disc"></div>
+  <div class="player__info">
+    <div class="player__meta">
+      <b id="playerTitle">—</b>
+      <small id="playerSub">LOCAL AUDIO · E:\Music\music</small>
+    </div>
+    <div class="player__seek" id="playerSeek" role="slider" aria-label="播放进度" tabindex="0">
+      <i id="playerFill"></i>
+    </div>
+  </div>
+  <div class="player__btns">
+    <button type="button" id="playerPrev" aria-label="上一首">⏮</button>
+    <button type="button" id="playerToggle" class="player__toggle" aria-label="播放/暂停">▶</button>
+    <button type="button" id="playerNext" aria-label="下一首">⏭</button>
+  </div>
+  <span class="player__time" id="playerTime">0:00 / 0:00</span>
+</div>
+
+<script src="data.js"></script>
+<script src="audio.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

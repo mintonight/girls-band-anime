@@ -1,0 +1,15 @@
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# 构建产物
+dist/
+node_modules/
+
+# 临时文件
+*.log
+*.tmp
+audio-manifest.json
