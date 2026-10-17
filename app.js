@@ -12,7 +12,13 @@
   const deep = (c) => c; // 占位，保持可读
 
   /* ==========================================================
-     0. 开场遮罩
+     0. 视频录制模式：?video=1 时自动进入、隐藏播放器与控制层
+     ========================================================== */
+  const VIDEO_MODE = new URLSearchParams(location.search).has("video");
+  if (VIDEO_MODE) document.documentElement.classList.add("is-video");
+
+  /* ==========================================================
+     1. 开场遮罩
      ========================================================== */
   const curtain = $("#curtain");
   let opened = false;
@@ -27,13 +33,14 @@
   }
 
   document.body.classList.add("is-locked");
+  if (VIDEO_MODE) { setTimeout(openSite, 60); }
   curtain.addEventListener("click", openSite);
   curtain.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") openSite();
   });
   window.addEventListener("wheel", openSite, { passive: true, once: true });
   window.addEventListener("touchmove", openSite, { passive: true, once: true });
-  setTimeout(openSite, 2600);
+  if (!VIDEO_MODE) setTimeout(openSite, 2600);
 
   /* ==========================================================
      1. 滚动进度 & 侧边导航

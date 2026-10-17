@@ -173,6 +173,10 @@ a{color:inherit}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .hero__inner{position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%}
+@media(min-width:1025px){
+  /* 卡片组右边缘对齐首屏 1280 内容栏的右边界 */
+  .hero__cast{right:calc((100% - min(100%,1280px)) / 2 + 24px)}
+}
 
 .hero__kicker{display:flex;align-items:center;gap:14px;margin:0 0 clamp(18px,3vh,34px);
   font-size:clamp(10px,1vw,12px);letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
@@ -224,7 +228,8 @@ body.is-ready .hero__title .line > span{transform:none}
 .btn--ghost:hover{color:#fff}
 
 /* HERO 三位主唱 */
-.hero__cast{position:absolute;right:clamp(20px,4vw,90px);bottom:clamp(150px,21vh,250px);
+.hero__cast{position:absolute;right:max(24px,calc((100% - 1280px) / 2));
+  bottom:clamp(150px,21vh,250px);
   z-index:2;display:flex;align-items:flex-end;pointer-events:none}
 .cast{position:relative;margin:0 0 0 -34px;width:clamp(120px,14.5vw,214px);aspect-ratio:16/11;
   border-radius:20px;overflow:hidden;background:#fff;
@@ -282,13 +287,13 @@ body.is-ready .hero__title .line > span{transform:none}
 
 /* ---------- 序章 ---------- */
 .intro__lead{max-width:920px;font-size:clamp(20px,3.1vw,40px);line-height:1.55;font-weight:700;
-  letter-spacing:-.01em;margin:34px 0 0}
+  letter-spacing:-.01em;margin:34px auto 0}
 .intro__lead em{font-style:normal;color:transparent;
   background:linear-gradient(100deg,var(--c-honey),var(--c-pink),var(--c-violet));
   -webkit-background-clip:text;background-clip:text}
 .intro__lead .dim{color:#a89fba}
 .intro__cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(18px,3vw,40px);
-  margin-top:clamp(38px,6vh,64px)}
+  margin:clamp(38px,6vh,64px) auto 0;max-width:1180px}
 .intro__cols p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.95}
 .intro__cols p b{color:var(--ink)}
 .seq{font-family:var(--font-serif);font-size:12px;letter-spacing:.3em;color:var(--muted);margin:0 0 12px;
@@ -314,7 +319,9 @@ body.is-ready .hero__title .line > span{transform:none}
 /* ---------- 乐队区块公共 ---------- */
 .band{position:relative;isolation:isolate}
 .band__scene{position:absolute;z-index:0;pointer-events:none;margin:0;
-  right:0;top:0;width:min(66%,900px);height:clamp(320px,42vw,600px);overflow:hidden}
+  /* 锚定到内容容器右边缘，与 1280px 栅格对齐，不再贴视口边 */
+  right:max(0px,calc((100% - 1280px) / 2));
+  top:0;width:min(64%,860px);height:clamp(320px,40vw,580px);overflow:hidden}
 .band__scene::before{content:"";position:absolute;inset:0;
   background-image:var(--scene);background-size:cover;background-position:center;
   opacity:.72;transform:scale(1.06);transform-origin:center;
@@ -330,7 +337,7 @@ body.is-ready .hero__title .line > span{transform:none}
   font-size:10px;letter-spacing:.2em;color:var(--ink-soft);
   padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.82);
   border:1px solid var(--line);backdrop-filter:blur(8px);box-shadow:var(--shadow-sm)}
-.band[data-band="mygo"] .band__scene{left:auto;right:0;
+.band[data-band="mygo"] .band__scene{
   -webkit-mask-image:linear-gradient(180deg,#000 46%,transparent 96%);
   mask-image:linear-gradient(180deg,#000 46%,transparent 96%)}
 .band[data-band="mygo"] .band__scene::after{
@@ -372,12 +379,13 @@ body.is-ready .hero__title .line > span{transform:none}
 .band__meta dd{margin:0;color:var(--ink);text-align:right}
 .band__meta dd.y{color:color-mix(in srgb,var(--c1) 72%,#3a2a48);font-weight:600}
 
-.band__lead{margin:clamp(28px,4vh,46px) 0 0;max-width:74ch;color:var(--ink-soft);
+.band__lead{margin:clamp(28px,4vh,46px) auto 0;max-width:74ch;color:var(--ink-soft);
   font-size:clamp(14px,1.2vw,15.5px);line-height:2.05}
 .band__lead b{color:var(--ink);font-weight:600}
 .band__lead .hl{color:color-mix(in srgb,var(--c1) 74%,#3a2a48);font-weight:600}
 
-.quote{position:relative;margin:clamp(34px,6vh,60px) 0 0;padding:clamp(24px,3vw,38px) clamp(24px,3.4vw,44px);
+.quote{position:relative;margin:clamp(34px,6vh,60px) auto 0;max-width:1080px;
+  padding:clamp(24px,3vw,38px) clamp(24px,3.4vw,44px);
   border-left:3px solid var(--c1);border-radius:0 20px 20px 0;
   background:linear-gradient(90deg,color-mix(in srgb,var(--c1) 16%,#fff),rgba(255,255,255,.35) 78%)}
 .quote p{margin:0;font-family:var(--font-serif);font-size:clamp(17px,2.1vw,26px);line-height:1.75;color:var(--ink)}
@@ -416,7 +424,8 @@ body.is-ready .hero__title .line > span{transform:none}
 @keyframes wave{from{transform:scaleY(.45);opacity:.6}to{transform:scaleY(1.15);opacity:1}}
 
 /* ---------- 浮动歌词 ---------- */
-.lyrics{position:absolute;right:0;bottom:6%;z-index:1;width:min(96%,1000px);height:46%;
+.lyrics{position:absolute;right:max(0px,calc((100% - 1280px) / 2));bottom:6%;z-index:1;
+  width:min(78%,960px);height:46%;
   pointer-events:none;overflow:hidden;opacity:.5;
   mask-image:linear-gradient(105deg,transparent,#000 28%,#000 92%,transparent);
   -webkit-mask-image:linear-gradient(105deg,transparent,#000 28%,#000 92%,transparent)}
@@ -568,8 +577,8 @@ body.is-ready .hero__title .line > span{transform:none}
   border-top:1px solid var(--line)}
 .cmp__col li span{font-size:9.5px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
 .cmp__col b{color:var(--ink);font-weight:700}
-.cmp__radar{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);
-  align-items:center;margin-top:clamp(30px,5vh,56px)}
+.cmp__radar{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(20px,4vw,56px);
+  align-items:center;margin-top:clamp(30px,5vh,56px);max-width:1080px;margin-left:auto;margin-right:auto}
 @media(max-width:820px){.cmp__radar{grid-template-columns:1fr}}
 .radar-wrap{position:relative;border-radius:26px;border:1px solid rgba(255,255,255,.9);padding:12px;
   background:radial-gradient(circle at 50% 45%,#fff,#fdf6fb);box-shadow:var(--shadow-md)}
@@ -585,13 +594,19 @@ body.is-ready .hero__title .line > span{transform:none}
 
 /* ---------- 场景画廊 ---------- */
 #gallery .intro__lead{margin-bottom:0}
-.gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:clamp(26px,4vh,40px)}
+/* 纯文字章节（序章 / 尾声）居中，有配图的乐队章节保持左文右图 */
+#prologue .intro__lead{text-align:center;max-width:min(92%,820px);text-wrap:balance}
+#compare .intro__lead{text-align:center}
+#prologue .seq,#compare .seq{justify-content:center;text-align:center}
+#prologue .seq::before{content:"";width:40px;height:1px;background:var(--line)}
+#prologue .seq::after,#compare .seq::after{flex:none;width:40px}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:clamp(26px,4vh,40px)}
 @media(max-width:900px){.gallery{grid-template-columns:1fr}}
-.gl{position:relative;margin:0;grid-column:span 5;border-radius:22px;overflow:hidden;
+.gl{position:relative;margin:0;border-radius:22px;overflow:hidden;
   border:1px solid rgba(255,255,255,.9);background:#fff;box-shadow:var(--shadow-md);
   transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
-.gl--wide{grid-column:span 7}
-@media(max-width:900px){.gl,.gl--wide{grid-column:span 1}}
+.gl--wide{grid-column:span 1}
+@media(max-width:900px){.gallery{grid-template-columns:1fr}}
 .gl{aspect-ratio:16/9}
 .gl--wide{aspect-ratio:16/9}
 .gl img{width:100%;height:100%;object-fit:cover;display:block;
@@ -727,6 +742,10 @@ body,button,input,select,textarea,
 .quote cite,.epilogue .sig{letter-spacing:.16em}
 .hero__title,.band__title,.epilogue h2,.curtain__title,.intro__lead,.band__lead,
 .quote p,.gl figcaption b,.mcard__name b,.song__name b,.gate h3{letter-spacing:0}
+
+/* ---------- 视频录制模式 ---------- */
+.is-video .viz,.is-video .dots,.is-video .player,.is-video .grain,.is-video .progress{display:none !important}
+.is-video .curtain{display:none !important}
 
 /* ---------- 减弱动效 ---------- */
 @media(prefers-reduced-motion:reduce){
