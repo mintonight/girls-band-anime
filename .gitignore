@@ -13,3 +13,7 @@ node_modules/
 *.log
 *.tmp
 audio-manifest.json
+
+# video workspace
+video/
+
