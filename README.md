@@ -1,4 +1,6 @@
 # 把孤独变成声音 · 少女乐队动画三部曲
+<img width="1146" height="717" alt="cover" src="https://github.com/user-attachments/assets/b3ac2131-28f2-452c-a239-4c28d8189b61" />
+
 
 一个纯前端的长页动画作品，介绍三部重新定义「少女乐队」的动画。
 
