@@ -299,7 +299,7 @@
               '<span class="mcard__badge">' + m.tag + '</span>' +
               '<div class="mcard__name"><b>' + m.name + '</b><span>' + m.jp + '</span></div>' +
             '</div>' +
-            '<div class="mcard__face mcard__face--back">' +
+            '<div class="mcard__face mcard__face--back mcard__back">' +
               '<span class="role">' + m.role + '</span>' +
               '<b>' + m.name + '</b>' +
               '<p>' + m.desc + '</p>' +
