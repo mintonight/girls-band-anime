@@ -590,6 +590,17 @@ body.is-ready .hero__title .line > span{transform:none}
 .gl::after{content:"";position:absolute;inset:0;pointer-events:none;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);border-radius:inherit;
   background:linear-gradient(180deg,color-mix(in srgb,var(--cc) 16%,transparent),transparent 40%)}
+/* 每张剧照都是通往 B站 该集的入口 */
+.gl__link{display:block;position:relative;width:100%;height:100%;color:inherit;text-decoration:none}
+.gl__link:focus-visible{outline:2px solid var(--cc);outline-offset:-3px;border-radius:inherit}
+.gl__go{position:absolute;z-index:3;top:14px;right:14px;padding:7px 13px;border-radius:999px;
+  font-size:11px;letter-spacing:.06em;color:#fff;white-space:nowrap;
+  background:color-mix(in srgb,var(--cc) 78%,#2a2036);backdrop-filter:blur(8px);
+  box-shadow:0 6px 18px rgba(60,40,80,.28);
+  opacity:0;transform:translateY(-6px);
+  transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.gl:hover .gl__go,.gl__link:focus-visible .gl__go{opacity:1;transform:translateY(0)}
+@media(hover:none),(max-width:760px){.gl__go{opacity:1;transform:none;font-size:10px;padding:6px 10px}}
 
 /* ---------- 官方 PV 缩略图 ---------- */
 .pvrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px}
@@ -713,7 +724,7 @@ body,button,input,select,textarea,
 .quote p,.gl figcaption b,.mcard__name b,.song__name b,.gate h3{letter-spacing:0}
 
 /* ---------- 视频录制模式 ---------- */
-.is-video .viz,.is-video .dots,.is-video .player,.is-video .grain,.is-video .progress{display:none !important}
+.is-video .viz,.is-video .dots,.is-video .grain,.is-video .progress,.is-video .gl__go{display:none !important}
 .is-video .curtain{display:none !important}
 
 /* ---------- 减弱动效 ---------- */
