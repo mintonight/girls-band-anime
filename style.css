@@ -439,7 +439,6 @@ body.is-ready .hero__title .line > span{transform:none}
 .members__head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
   border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:24px}
 .members__head h3{margin:0;font-size:13px;letter-spacing:.3em;color:var(--ink-soft);text-transform:uppercase;font-weight:700}
-.members__head span{font-size:10.5px;letter-spacing:.2em;color:var(--muted)}
 
 .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(186px,1fr));gap:16px}
 .mcard{position:relative;aspect-ratio:3/4.15;perspective:1200px;cursor:pointer;background:none;border:0;padding:0;
@@ -531,7 +530,6 @@ body.is-ready .hero__title .line > span{transform:none}
 .net .link{transition:stroke-opacity .3s,stroke-width .3s}
 .net .link.dim{stroke-opacity:.06}
 .net .node.dim{opacity:.22}
-.net__hint{position:absolute;left:18px;top:16px;font-size:10px;letter-spacing:.2em;color:var(--muted)}
 
 /* ---------- 对照 ---------- */
 .cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(28px,4vh,40px)}
@@ -708,7 +706,7 @@ body,button,input,select,textarea,
   font-variant-numeric:normal;
 }
 /* 小字号中文标签：收掉过分的字距，避免被读成等宽排版 */
-.seq,.band__no,.members__head span,.stage__cap,.net__hint,.curtain__kicker,
+.seq,.band__no,.stage__cap,.curtain__kicker,
 .gl figcaption span,.mcard__name span,.song__name small,.cmp__col li span,
 .band__scene figcaption,.pv figcaption,.mcard__badge,.foot__tags span,
 .hero__kicker,.curtain__text{
