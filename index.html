@@ -493,35 +493,14 @@
   <div>
     <b>把孤独变成声音</b>
     <p>本页为纯前端演示：HTML5 + CSS3（关键帧 / 3D 翻转 / 混合模式 / 渐变遮罩）+ 原生 JS（IntersectionObserver / SVG 动态绘制 / Canvas 频谱）+ 内联 SVG 插画。<br>
-    无外部依赖。「代表曲」列表接入本地音乐库（<b>E:\Music\music</b>，共 45 首），点击即可真实播放；音频用 file:// 直接读取，不经过任何服务器。角色立绘取自各作品官方网站公开角色页（bocchi.rocks / anime.bang-dream.com/mygo / girls-band-cry.com），版权归原作者与制作委员会所有，本页仅作非商业介绍与学习演示，详见 <b>img/CREDITS.md</b>。舞台、频谱、动效与排版均为原创代码绘制。</p>
+    无外部依赖。「代表曲」列表的每一行都链接到 B站 对应视频（新标签页打开），页面本身不含任何音轨。角色立绘取自各作品官方网站公开角色页（bocchi.rocks / anime.bang-dream.com/mygo / girls-band-cry.com），版权归原作者与制作委员会所有，本页仅作非商业介绍与学习演示，详见 <b>img/CREDITS.md</b>。舞台、频谱、动效与排版均为原创代码绘制。</p>
   </div>
   <div class="foot__tags">
     <span>H5</span><span>CSS3</span><span>JS</span><span>SVG</span><span>Canvas</span>
   </div>
 </footer>
 
-<!-- 播放器（接入本地音频） -->
-<div class="player" id="player" role="status" aria-live="polite">
-  <div class="player__disc"></div>
-  <div class="player__info">
-    <div class="player__meta">
-      <b id="playerTitle">—</b>
-      <small id="playerSub">LOCAL AUDIO · E:\Music\music</small>
-    </div>
-    <div class="player__seek" id="playerSeek" role="slider" aria-label="播放进度" tabindex="0">
-      <i id="playerFill"></i>
-    </div>
-  </div>
-  <div class="player__btns">
-    <button type="button" id="playerPrev" aria-label="上一首">⏮</button>
-    <button type="button" id="playerToggle" class="player__toggle" aria-label="播放/暂停">▶</button>
-    <button type="button" id="playerNext" aria-label="下一首">⏭</button>
-  </div>
-  <span class="player__time" id="playerTime">0:00 / 0:00</span>
-</div>
-
 <script src="data.js"></script>
-<script src="audio.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

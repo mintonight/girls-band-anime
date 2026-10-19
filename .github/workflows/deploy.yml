@@ -24,7 +24,7 @@ jobs:
       - name: Prepare artifact
         run: |
           mkdir -p _site
-          cp -r index.html style.css app.js data.js audio.js img _site/
+          cp -r index.html style.css app.js data.js README.md img _site/
           ls -la _site
 
       - name: Upload artifact

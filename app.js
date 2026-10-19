@@ -228,6 +228,33 @@
   });
 
   /* ==========================================================
+     3.5 B站 跳转：曲目行点击直达对应视频
+     ========================================================== */
+  /* 曲名归一化：去括号补充说明、空格、符号差异，便于本地文件名与曲目表对齐 */
+  function normalizeSong(s) {
+    return String(s || "")
+      .replace(/\([^)]*\)|（[^）]*）|【[^】]*】/g, "")
+      .replace(/[\s　・·、,，.。!！?？'"“”‘’\-—–_~～]/g, "")
+      .toLowerCase();
+  }
+
+  /* B站 视频地址：支持 BV 号，可指定起播时间 */
+  function biliURL(bv) {
+    return "https://www.bilibili.com/video/" + bv + "/";
+  }
+
+  /* 新标签页打开；被拦截时回退为当前页跳转 */
+  function openBili(bv, row) {
+    const url = biliURL(bv);
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    if (!win) location.href = url;
+    if (row) {
+      row.classList.add("is-leaving");
+      setTimeout(() => row.classList.remove("is-leaving"), 900);
+    }
+  }
+
+  /* ==========================================================
      4. 渲染：舞台 / 歌词 / 成员 / 曲目
      ========================================================== */
   const counts = { bocchi: 4, mygo: 5, gbc: 5 };
@@ -295,39 +322,38 @@
       });
     }
 
-    // 曲目：优先用本地真实音频，缺失的条目不再展示
+    // 曲目：本地有真实音频就播本地，否则给出 B站 直达链接
     const list = $("#songs-" + key);
     if (list) {
-      const real = typeof audioFor === "function" ? audioFor(key) : [];
-      const tracks = real.length
-        ? real.map((x) => ({
-            name: x.f.replace(/^[^-]+ - /, "").replace(/\.(flac|mp3)$/i, ""),
-            file: x.f,
-            dur: x.d,
-            real: true
-          }))
-        : band.songs.map((s) => ({ name: s.name, cn: s.cn, use: s.use, year: s.year, real: false }));
+      // 全部曲目统一跳到 B站，不再读取本地音乐库
+      const tracks = band.songs.map((s) => ({
+        name: s.name, cn: s.cn, use: s.use, year: s.year, bili: s.bili
+      }));
 
       tracks.forEach((s, i) => {
         const row = document.createElement("div");
-        row.className = "song" + (s.real ? " song--real" : "");
-        row.tabIndex = 0;
-        row.setAttribute("role", "button");
-        row.setAttribute("aria-label", s.name);
+        row.className = "song song--bili";
         row.style.setProperty("--c1", band.c1);
+        if (s.bili) row.dataset.bili = s.bili;
+
+        // 整行就是一个链接：点哪里都跳 B站
         row.innerHTML =
-          '<div class="song__no">' + String(i + 1).padStart(2, "0") + '</div>' +
-          '<div class="song__name">' +
-            '<div class="song__wave">' + Array.from({ length: 5 }).map((_, k) => '<i style="--i:' + k + '"></i>').join("") + '</div>' +
-            '<div><b>' + s.name + '</b><small>' + (s.real ? band.jp + " · " + (s.file.split(".").pop().toUpperCase()) : (s.cn || "")) + '</small></div>' +
-          '</div>' +
-          '<div class="song__use">' + (s.real ? "本地音频" : s.use) + '</div>' +
-          '<div class="song__time">' + (s.real ? fmtTime(s.dur) : s.year) + '</div>' +
-          '<div class="song__play">▶</div>';
-        const act = () => togglePlay(row, band, s);
-        row.addEventListener("click", act);
-        row.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); act(); }
+          '<a class="song__hit" href="' + (s.bili ? biliURL(s.bili) : "#") + '"' +
+            ' target="_blank" rel="noopener noreferrer"' +
+            ' aria-label="在 B站 打开 ' + s.name + '">' +
+            '<div class="song__no">' + String(i + 1).padStart(2, "0") + '</div>' +
+            '<div class="song__name">' +
+              '<div class="song__wave">' + Array.from({ length: 5 }).map((_, k) => '<i style="--i:' + k + '"></i>').join("") + '</div>' +
+              '<div><b>' + s.name + '</b><small>' + (s.cn || "") + '</small></div>' +
+            '</div>' +
+            '<div class="song__use">' + (s.use || "") + '</div>' +
+            '<div class="song__time">' + (s.year || "") + '</div>' +
+            '<span class="song__play" aria-hidden="true">↗</span>' +
+          '</a>';
+
+        row.querySelector("a").addEventListener("click", () => {
+          row.classList.add("is-leaving");
+          setTimeout(() => row.classList.remove("is-leaving"), 900);
         });
         list.appendChild(row);
       });
@@ -337,113 +363,16 @@
   /* ==========================================================
      5. 假播放器 & Canvas 频谱
      ========================================================== */
-  const player = $("#player");
-  const pTitle = $("#playerTitle");
-  const pSub = $("#playerSub");
-  const pSeek = $("#playerSeek");
-  const pFill = $("#playerFill");
-  const pTime = $("#playerTime");
-  const pPrev = $("#playerPrev");
-  const pNext = $("#playerNext");
-  const pToggle = $("#playerToggle");
-
-  let playingRow = null;
+  /* 所有曲目改为跳转 B站，本地播放器与音频元素已移除；
+     这里保留 Canvas 频谱作为背景动效（跟随当前悬停的乐队配色）。 */
   let playingBand = null;
 
-  /* 真实音频元素：整个页面共用一个 */
-  const audioEl = new Audio();
-  audioEl.preload = "metadata";
-  audioEl.volume = 0.85;
-
-  function togglePlay(row, band, song) {
-    if (playingRow === row && !audioEl.paused) { pausePlay(); return; }
-    if (playingRow === row && audioEl.paused) { resumePlay(); return; }
-    startPlay(row, band, song);
-  }
-
-  function startPlay(row, band, song) {
-    stopPlay(true);
-    playingRow = row;
-    playingBand = band;
-    row.classList.add("playing");
-    player.classList.add("on", "playing");
-    player.style.setProperty("--c1", band.c1);
-    pTitle.textContent = song.name;
-    pSub.textContent = band.name + (song.real ? " · 本地音频" : " · 无音轨示意");
-
-    if (song.real && typeof audioURL === "function") {
-      audioEl.src = audioURL(song.file);
-      audioEl.play().catch(() => {
-        pSub.textContent = "音频读取失败 · 请检查 E:\\Music\\music";
-        player.classList.remove("playing");
-      });
-    } else {
-      audioEl.removeAttribute("src");
-      // 没有真实音轨时，26 秒后自动收回，保留原来的「示意」行为
-      setTimeout(() => { if (playingRow === row && !song.real) stopPlay(); }, 26000);
-    }
-  }
-
-  function pausePlay() {
-    audioEl.pause();
-    player.classList.remove("playing");
-    if (pToggle) pToggle.textContent = "▶";
-  }
-  function resumePlay() {
-    if (audioEl.src) audioEl.play().catch(() => {});
-    player.classList.add("playing");
-    if (pToggle) pToggle.textContent = "❚❚";
-  }
-
-  function stopPlay(keepPlayerUI) {
-    if (playingRow) playingRow.classList.remove("playing");
-    playingRow = null;
-    playingBand = null;
-    audioEl.pause();
-    if (pToggle) pToggle.textContent = "▶";
-    if (!keepPlayerUI) {
-      player.classList.remove("playing", "on");
-      if (pFill) pFill.style.width = "0%";
-      if (pTime) pTime.textContent = "0:00 / 0:00";
-    }
-  }
-
-  /* 播放器控件 */
-  if (pToggle) pToggle.addEventListener("click", () => {
-    if (!playingRow) return;
-    if (audioEl.paused) resumePlay(); else pausePlay();
-  });
-  if (pPrev) pPrev.addEventListener("click", () => jump(-1));
-  if (pNext) pNext.addEventListener("click", () => jump(1));
-
-  function jump(dir) {
-    if (!playingRow) return;
-    const rows = Array.from(document.querySelectorAll(".song"));
-    const i = rows.indexOf(playingRow);
-    const target = rows[i + dir];
-    if (!target) return;
-    target.click();
-  }
-
-  audioEl.addEventListener("timeupdate", () => {
-    if (!pFill || !audioEl.duration) return;
-    pFill.style.width = (audioEl.currentTime / audioEl.duration * 100).toFixed(2) + "%";
-    if (pTime) pTime.textContent = fmtTime(audioEl.currentTime) + " / " + fmtTime(audioEl.duration);
-  });
-  audioEl.addEventListener("loadedmetadata", () => {
-    if (pTime) pTime.textContent = "0:00 / " + fmtTime(audioEl.duration);
-    if (pToggle) pToggle.textContent = "❚❚";
-  });
-  audioEl.addEventListener("ended", () => { jump(1); });
-  audioEl.addEventListener("error", () => {
-    if (pSub) pSub.textContent = "音频读取失败 · 请检查 E:\\Music\\music";
-    player.classList.remove("playing");
-  });
-
-  if (pSeek) pSeek.addEventListener("click", (e) => {
-    if (!audioEl.duration) return;
-    const r = pSeek.getBoundingClientRect();
-    audioEl.currentTime = ((e.clientX - r.left) / r.width) * audioEl.duration;
+  /* 悬停到某个乐队的曲目区时，频谱换成该队的配色 */
+  $$(".band").forEach((sec) => {
+    const key = sec.id;
+    const band = BANDS[key];
+    if (!band) return;
+    sec.addEventListener("mouseenter", () => { playingBand = band; });
   });
 
   const canvas = document.createElement("canvas");
@@ -474,10 +403,10 @@
     if (document.hidden) return;
 
     phase += 0.014;
-    const active = !!playingBand && !audioEl.paused;
+    const active = !!playingBand;
     const c1 = playingBand ? playingBand.c1 : "#8b7cf6";
     const c2 = playingBand ? playingBand.c2 : "#ff5f95";
-    const energy = active ? 1.25 : (playingBand ? 0.5 : 0.3);
+    const energy = active ? 0.95 : 0.34;
 
     ctx.clearRect(0, 0, W, H);
     const bw = W / BARS;
@@ -496,7 +425,7 @@
       g.addColorStop(0, c1);
       g.addColorStop(1, c2);
       ctx.fillStyle = g;
-      ctx.globalAlpha = active ? 0.8 : 0.4;
+      ctx.globalAlpha = active ? 0.5 : 0.26;
       ctx.fillRect(x, H - h, w, h);
     }
     ctx.globalAlpha = 1;
@@ -782,7 +711,6 @@
      ========================================================== */
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      stopPlay();
       $$(".mcard.flip").forEach((c) => c.classList.remove("flip"));
     }
   });

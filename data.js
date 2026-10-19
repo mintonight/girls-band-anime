@@ -46,12 +46,12 @@ const BANDS = {
       }
     ],
     songs: [
-      { name: "青春コンプレックス", cn: "青春情节", use: "OP", year: "2022" },
-      { name: "ギターと孤独と蒼い惑星", cn: "吉他与孤独与蓝色星球", use: "第 4 话", year: "2022" },
-      { name: "あのバンド", cn: "那个乐队", use: "剧中曲", year: "2022" },
-      { name: "星座になれたら", cn: "若能成为星座", use: "剧中曲", year: "2022" },
-      { name: "転がる岩、君に朝が降る", cn: "翻滚的石头，晨光落在你身上", use: "ED", year: "2022" },
-      { name: "Distortion!!", cn: "失真", use: "剧中曲", year: "2022" }
+      { name: "青春コンプレックス", cn: "青春情节", use: "OP", year: "2022", bili: "BV1HT411N7FP" },
+      { name: "ギターと孤独と蒼い惑星", cn: "吉他与孤独与蓝色星球", use: "第 4 话", year: "2022", bili: "BV1w14y157UZ" },
+      { name: "あのバンド", cn: "那个乐队", use: "剧中曲", year: "2022", bili: "BV1v24y1C735" },
+      { name: "星座になれたら", cn: "若能成为星座", use: "剧中曲", year: "2022", bili: "BV1u8411H7yA" },
+      { name: "転がる岩、君に朝が降る", cn: "翻滚的石头，晨光落在你身上", use: "ED", year: "2022", bili: "BV1nV4y1w74h" },
+      { name: "Distortion!!", cn: "失真", use: "剧中曲", year: "2022", bili: "BV1ng411h71y" }
     ]
   },
 
@@ -103,12 +103,12 @@ const BANDS = {
       }
     ],
     songs: [
-      { name: "詩超絆", cn: "诗超绊", use: "第 10 话", year: "2023" },
-      { name: "春日影", cn: "春日影", use: "剧中曲", year: "2023" },
-      { name: "迷星叫", cn: "迷星叫", use: "剧中曲", year: "2023" },
-      { name: "壱雫空", cn: "一雫空", use: "OP", year: "2023" },
-      { name: "栞", cn: "书签", use: "ED", year: "2023" },
-      { name: "焚音打", cn: "焚音打", use: "剧中曲", year: "2023" }
+      { name: "詩超絆", cn: "诗超绊", use: "第 10 话", year: "2023", bili: "BV1kj411i7ZY" },
+      { name: "春日影", cn: "春日影", use: "剧中曲", year: "2023", bili: "BV1JHLUz4EUy" },
+      { name: "迷星叫", cn: "迷星叫", use: "剧中曲", year: "2023", bili: "BV1Ue4y117Xz" },
+      { name: "壱雫空", cn: "一雫空", use: "OP", year: "2023", bili: "BV1Lh411c7Ys" },
+      { name: "栞", cn: "书签", use: "ED", year: "2023", bili: "BV1JM4y177od" },
+      { name: "焚音打", cn: "焚音打", use: "剧中曲", year: "2023", bili: "BV1sNdGYWEvv" }
     ]
   },
 
@@ -160,12 +160,12 @@ const BANDS = {
       }
     ],
     songs: [
-      { name: "名もなき何もかも", cn: "无名的一切", use: "剧中曲", year: "2024" },
-      { name: "視界の隅 朽ちる音", cn: "视野一角腐朽的声音", use: "主题歌", year: "2024" },
-      { name: "空の箱", cn: "空之箱", use: "剧中曲", year: "2024" },
-      { name: "運命に賭けたい論理", cn: "想赌上命运的逻辑", use: "剧中曲", year: "2024" },
-      { name: "気鬱、白濁す", cn: "忧郁、白浊", use: "剧中曲", year: "2024" },
-      { name: "ETERNAL FLAME", cn: "永恒之火", use: "剧中曲", year: "2024" }
+      { name: "名もなき何もかも", cn: "无名的一切", use: "剧中曲", year: "2024", bili: "BV1Q5RuYdEZC" },
+      { name: "視界の隅 朽ちる音", cn: "视野一角腐朽的声音", use: "主题歌", year: "2024", bili: "BV1kJ4m1K7sw" },
+      { name: "空の箱", cn: "空之箱", use: "剧中曲", year: "2024", bili: "BV1fx421S79u" },
+      { name: "運命に賭けたい論理", cn: "想赌上命运的逻辑", use: "剧中曲", year: "2024", bili: "BV1cXQ9YZE9n" },
+      { name: "気鬱、白濁す", cn: "忧郁、白浊", use: "剧中曲", year: "2024", bili: "BV1JzQpYTEft" },
+      { name: "ETERNAL FLAME", cn: "永恒之火", use: "剧中曲", year: "2024", bili: "BV11Z421W7bL" }
     ]
   }
 };
